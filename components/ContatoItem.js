@@ -1,12 +1,33 @@
 import React from 'react';
-import{Text, StyleSheet, TouchableOpacity} from 'react-native';
+import{Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import Cartao from '../components/Cartao';
 import Cores from '../Cores/Cores';
 import Medidas from '../Medidas/Medidas'
 
-const ContatoItem =(props) =>{
+const ContatoItem = (props) => {
+
+    const excluirContato = () =>{
+
+        Alert.alert(
+
+            'Excluir Contato',
+            'Deseja excluir esse Contato',
+            [
+                {
+                    text: "Cancel",
+                    style: "cancel"
+                },
+                { 
+                    text: "OK", 
+                    onPress: () => props.onDelete(props.keys)
+                }
+            ],
+
+            { cancelable: false }
+        )
+    } 
     return(
-        <TouchableOpacity onLongPress={props.onDelete.bind(this,props.chave)}> 
+        <TouchableOpacity onLongPress={excluirContato}> 
             <Cartao estilos={estilos.itemNaLista}>
                 <Text>({props.id})Nome: {props.nome}</Text>
                 <Text>       Telefone: {props.numero}</Text>
@@ -23,7 +44,6 @@ const estilos = StyleSheet.create({
         flex:Medidas.itemflex,
         margin:Medidas.itemMargin,
         padding:Medidas.itemPadding,
-        borderColor:Cores.backItemNo,
         borderWidth:1,
         marginBottom:8,
         borderRadius:5

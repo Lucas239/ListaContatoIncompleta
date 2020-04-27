@@ -10,7 +10,7 @@ const TelaComeco =(props)=>{
   const[contadorContatos, setContadorContatos] = useState(0);
 
  
-  //para add oque foi digitado
+  
   const adicionarContato=(nome, numero)=>{
     contato=(id, nome, numero);
 
@@ -18,15 +18,15 @@ const TelaComeco =(props)=>{
       console.log(contatos);
       setId(id+2);
       setContadorContatos(contadorContatos+1);
-      return[...contatos,{key:contadorContatos.toString(),value:contato=(id),value2:
-      contato=(nome),value3:contato=(numero)}];
+      return[{key:contadorContatos.toString(),value:contato=(id),
+      value2:contato=(nome),value3:contato=(numero)}, ...contatos];
     });
   };
   const removerContato = (keyASerRemovida)=>{
     setContatos(contatos=>{
         return contatos.filter((contato)=>{
-        contato.key !== keyASerRemovida
-      })
+          contato.key !== keyASerRemovida
+      });
     });
   };
   return (
@@ -34,9 +34,9 @@ const TelaComeco =(props)=>{
       <Text style={estilos.titulo}>Contatos Adicionados</Text>
       <ContatoInput onAdicionarContato={adicionarContato}/>
       <FlatList
-        data={contatos}/*colecao de contatos*/
-        renderItem={/*mapeamento*/
-        contato => (/*dado um contato gera uma view*/
+        data={contatos}
+        renderItem={
+        contato => (
         <ContatoItem id={contato.item.value} nome={contato.item.value2} numero={contato.item.value3} 
         onDelete={removerContato}/>
       )}/>

@@ -21,7 +21,7 @@ export default{
     itemPadding:5,
     borderColor:'#000',
     borderWidth:1,
-    marginBottom:8,
+    itemmarginBottom:8,
     borderRadius:5,
     itemWidth:300,
     itemMaxW:'100%',
